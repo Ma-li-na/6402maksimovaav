@@ -53,6 +53,9 @@ def cosine(x: float, terms: int = 10) -> float:
         result += sign * (x ** (2 * n)) / factorial(2 * n)  # Член ряда Тейлора
     return result
 
+def constanta() -> float:
+    return 2*math.pi
+
 def normalize_angle(x: float) -> float:
     """Нормализует угол x в диапазоне [0, 2π).
 
@@ -62,10 +65,12 @@ def normalize_angle(x: float) -> float:
     Возвращает: 
     х (float) - нормализованный угол."""
 
+    y = constanta()
+
     while x < 0:
-        x += 2 * math.pi  
-    while x >= 2 * math.pi:
-        x -= 2 * math.pi 
+        x += y 
+    while x >= y:
+        x -= y
     return x
 
 def cos_bx_c(b: float, x: float, c: float) -> float:
