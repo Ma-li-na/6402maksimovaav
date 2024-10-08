@@ -54,8 +54,12 @@ class TimerowForAnalise:
         pd.Series - значение автокорреляции"""
         
         # Вычисление автокорреляции
-        autocorr = self.data.autocorr(lag)
-        return pd.Series(autocorr)
+        data_len = len(self.data)
+        max_lag = data_len - 1 # Максимальный лаг - это длина данных минус 1
+        autocorr = []
+        for lag in range(1, max_lag + 1):
+            autocorr.append(self.data.autocorr(lag))
+        return pd.Series(autocorr, index=np.arange(1, max_lag + 1))
         
         
        
@@ -108,7 +112,11 @@ class TimerowForAnalise:
       
 
     def get_results(self) -> pd.DataFrame:
-      """Возвращает DataFrame со всеми результатами анализа."""
+      """Возвращает DataFrame со всеми результатами анализа.
+      
+      Возвращает: 
+      pd.DataFrame - вся информация по работе программы (оригинальные данные, результаты анализа и работы функций)"""
+
       df = self.save_to_dataframe(self.data, 'Temperature')
       
       # Используем цикл для объединения результатов
