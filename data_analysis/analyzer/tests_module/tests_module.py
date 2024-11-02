@@ -40,7 +40,7 @@ class TestTimerowForAnalise(unittest.TestCase):
 
     def test_calculate_autocorrelation(self):
         #проверка функции посчета автокорреляции
-        expected_result = pd.Series([0.058824]) 
+        expected_result = pd.Series([0.058824, -1.000000, 0.000000, 1.000000, 1.000000, np.nan]) 
         result = self.analiz.calculate_autocorrelation(lag=1)
         pd.testing.assert_series_equal(result, expected_result, check_exact=False, check_index=False, check_dtype=False)
 
