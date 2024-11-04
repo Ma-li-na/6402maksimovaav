@@ -6,8 +6,8 @@ from unittest.mock import patch, MagicMock
 from datetime import datetime
 import numpy as np
 import pandas as pd
-from getdata import WeatherData # Предполагаем, что getdata.py импортируется
-from monitoring import DataMonitor # Предполагаем, что DataMonitor находится в файле data_monitor.py
+from getdata import WeatherData 
+from monitoring import DataMonitor 
 
 
 class DataMonitorTest(unittest.TestCase):
