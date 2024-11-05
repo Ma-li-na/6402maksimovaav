@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 import pandas as pd
 from datetime import datetime
-from getdata import WeatherData  # Замените 'your_module' на имя вашего модуля
+from getdata import WeatherData  
 
 
 class TestWeatherData(unittest.TestCase):

@@ -6,8 +6,8 @@ from unittest.mock import patch, MagicMock
 from datetime import datetime
 import numpy as np
 import pandas as pd
-from getdata import WeatherData # Предполагаем, что getdata.py импортируется
-from monitoring import DataMonitor # Предполагаем, что DataMonitor находится в файле data_monitor.py
+from getdata import WeatherData 
+from monitoring import DataMonitor 
 
 
 class DataMonitorTest(unittest.TestCase):
@@ -36,13 +36,13 @@ class DataMonitorTest(unittest.TestCase):
     start_date = datetime(2023, 3, 1).strftime('%Y-%m-%d')
     end_date = datetime(2023, 3, 10).strftime('%Y-%m-%d')
 
-    mock_get_weather_data.side_effect = Exception("Error!")
+    mock_get_weather_data.side_effect = Exception("Error!") # get_weather_data должен вернуть ошибку
 
     monitor = DataMonitor(location, start_date, end_date)
     monitor.run()
 
-    mock_get_weather_data.assert_called_once()
-    mock_error.assert_called_once()
+    mock_get_weather_data.assert_called_once() #проверка, что get_weather_data вызван только один раз
+    mock_error.assert_called_once() #проверка, что logging error вызван только один раз
     self.assertFalse(monitor.running)
 
 
@@ -56,7 +56,7 @@ class DataMonitorTest(unittest.TestCase):
   def test_stop_logging(self, mock_info):
     monitor = DataMonitor(np.array([0, 0]), '2023-03-01', '2023-03-10')
     monitor.stop()
-    mock_info.assert_called_once()
+    mock_info.assert_called_once() # проверяется, что функция logging.info была вызвана только один раз
 
 
 
