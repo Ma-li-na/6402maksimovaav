@@ -3,14 +3,16 @@ import pandas as pd
 from typing import Any, Callable
 from statsmodels.tsa.seasonal import seasonal_decompose
 
-def decorator(func : Callable) -> Callable:
+def decorator(func: Callable) -> Callable:
     # Простой декоратор для логирования вызовов функций
-    def wrapper(*args : Any, **kwargs : Any):
-        print(f"Вызов функции: {func.__name__} с аргументами: {args} {kwargs}")
+    def wrapper(*args: Any, **kwargs: Any):
+        if __name__ == "__main__":  # Проверяем, что это основной запуск
+            print(f"Вызов функции: {func.__name__} с аргументами: {args} {kwargs}")
         result = func(*args, **kwargs)
-        print(f"Результат: {result}")
+        if __name__ == "__main__":  # Проверяем, что это основной запуск
+            print(f"Результат: {result}")
         return result
-    return wrapper 
+    return wrapper
 
 class TimerowForAnalise:
     
@@ -61,8 +63,7 @@ class TimerowForAnalise:
             autocorr.append(self.data.autocorr(lag))
         return pd.Series(autocorr, index=np.arange(1, max_lag + 1))
         
-        
-       
+             
 
     @decorator 
     def find_maxime(self) -> pd.Series:
@@ -85,6 +86,15 @@ class TimerowForAnalise:
 
     @decorator 
     def decompose_time_series(self, model='additive', period=None) -> pd.DataFrame:
+        """Разлагает временной ряд на тренд, сезонность и остаток.
+
+         Args:
+         model (str, optional): Модель разложения (additive или multiplicative). По умолчанию - 'additive'.
+         period (int, optional): Период сезонности (например, 12 для ежемесячных данных). 
+
+          Returns:
+          pd.DataFrame: DataFrame, содержащий столбцы 'Trend', 'Seasonal', 'Residual'."""
+
         decomposed = seasonal_decompose(self.data, model=model, period=period)
         trend = decomposed.trend
         seasonal = decomposed.seasonal

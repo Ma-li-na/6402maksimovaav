@@ -1,0 +1,5 @@
+2024-11-02 17:11:10,876 - ERROR - Error of theard in monitoring: name 'getdata' is not defined
+2024-11-02 17:21:49,176 - ERROR - Error of theard in monitoring: 'Point' object is not subscriptable
+2024-11-02 17:22:46,466 - ERROR - Error of theard in monitoring: 'Point' object is not subscriptable
+2024-11-02 17:23:17,156 - ERROR - Error of theard in monitoring: strptime() argument 1 must be str, not datetime.datetime
+2024-11-02 17:24:52,577 - ERROR - Error of theard in monitoring: strptime() argument 1 must be str, not datetime.datetime
